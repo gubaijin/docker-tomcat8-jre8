@@ -1,15 +1,14 @@
-FROM tomcat:8-jre8
-ENV LANG en_US.UTF-8
-ENV CATALINA_HOME /usr/share/tomcat8
-ENV CATALINA_BASE /var/lib/tomcat8
-ENV CATALINA_PID  /var/run/tomcat8.pid
-ENV CATALINA_SH   /usr/share/tomcat8/bin/catalina.sh
-ENV CATALINA_TMPDIR /tmp/tomcat8-tomcat8-tmp
-
-RUN mkdir -p $CATALINA_TMPDIR
-
-VOLUME ["/home/volume/tomcat8/webapps"]
-
-EXPOSE 8080 9000
-
-ENTRYPOINT ["/usr/share/tomcat8/bin/catalina.sh", "run" ]
+FROM registry.cn-hangzhou.aliyuncs.com/gplucky/java
+ENV LANG en_US.UTF-8
+RUN yum install -y tar make gcc net-tools gcc-c++
+COPY apache-tomcat-8.0.37.tar.gz /opt/
+COPY cronolog-1.6.2.tar.gz /opt/
+RUN cd /opt/ &&\
+    tar zxvf apache-tomcat-8.0.37.tar.gz && \
+    mv apache-tomcat-8.0.37 tomcat && \
+    rm /opt/apache-tomcat-8.0.37.tar.gz &&\
+    tar xf cronolog-1.6.2.tar.gz &&\
+    cd cronolog-1.6.2 &&\
+    ./configure &&\
+    make && make install
+CMD tail -f /opt/tomcat/logs/catalina.out
