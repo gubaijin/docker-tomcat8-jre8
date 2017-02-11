@@ -10,4 +10,4 @@ RUN cd /opt/ &&\
     cd cronolog-1.6.2 && \
     ./configure && \
     make && make install
-CMD tail -f /opt/tomcat/logs/catalina.out
+CMD tail -f /opt/tomcat/logs/catalina.out
