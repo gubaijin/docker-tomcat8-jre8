@@ -1,6 +1,4 @@
-FROM centos:7
-ENV LANG en_US.UTF-8
-RUN yum install -y java-1.8.0-openjdk
+FROM registry-internal.cn-hangzhou.aliyuncs.com/gplucky/java
 COPY apache-tomcat-8.0.37.tar.gz /opt/
 COPY cronolog-1.6.2.tar.gz /opt/
 RUN yum install -y tar &&\
