@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/gplucky/java
+FROM registry-internal.cn-hangzhou.aliyuncs.com/gplucky/java
 COPY apache-tomcat-8.0.37.tar.gz /opt/
 COPY cronolog-1.6.2.tar.gz /opt/
 RUN yum install -y tar &&\
