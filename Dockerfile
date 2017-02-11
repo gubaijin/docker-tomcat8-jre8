@@ -1,5 +1,9 @@
 FROM registry.cn-hangzhou.aliyuncs.com/gplucky/java
-RUN yum -y install tar make gcc net-tools gcc-c++
+RUN yum install -y tar &&\
+	yum install -y make &&\
+	yum install -y gcc &&\
+	yum install -y net-tools &&\
+	yum install -y gcc-c++
 COPY apache-tomcat-8.0.37.tar.gz /opt/
 COPY cronolog-1.6.2.tar.gz /opt/
 RUN cd /opt/ &&\
