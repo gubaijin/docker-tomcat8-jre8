@@ -1,4 +1,6 @@
 FROM tomcat:8-jre8
-RUN ./setShell.sh
+COPY setShell.sh /
+RUN chmod +x /setShell.sh && \
+    ./setShell.sh
 CMD ["catalina.sh", "run"]
 
