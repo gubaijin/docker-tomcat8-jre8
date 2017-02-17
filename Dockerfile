@@ -1,7 +1,17 @@
-FROM tomcat:8-jre8
-COPY setShell.sh /opt/
-RUN  cd /opt/ && \
-    chmod +x setShell.sh && \
-    ./setShell.sh
-CMD ["catalina.sh", "run"]
-
+FROM registry.cn-hangzhou.aliyuncs.com/gplucky/java
+COPY apache-tomcat-8.0.37.tar.gz /opt/
+COPY cronolog-1.6.2.tar.gz /opt/
+RUN yum install -y tar make gcc net-tools gcc-c++
+RUN cd /opt/ &&\
+    tar zxvf apache-tomcat-8.0.37.tar.gz && \
+    mv apache-tomcat-8.0.37 tomcat && \
+    rm /opt/apache-tomcat-8.0.37.tar.gz && \
+    touch /opt/tomcat/logs/catalina.out && \
+    tar xf cronolog-1.6.2.tar.gz && \
+    cd cronolog-1.6.2 && \
+    ./configure && \
+    make && make install && \
+    cd /opt/tomcat/bin/ && \
+    ./startup.sh && \
+    touch /opt/tomcat/logs/catalina.out
+CMD tail -f /opt/tomcat/logs/catalina.out
