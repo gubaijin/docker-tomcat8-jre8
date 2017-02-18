@@ -12,4 +12,4 @@ RUN cd /opt/ &&\
     make && make install
 RUN yum install -y rng-tools
 RUN touch /opt/tomcat/logs/catalina.out
-CMD systemctl start rngd
+CMD ["/usr/sbin/init", "systemctl start rngd"]
