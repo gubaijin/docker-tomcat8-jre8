@@ -12,3 +12,4 @@ RUN cd /opt/ &&\
     make && make install
 RUN yum install -y rng-tools
 RUN touch /opt/tomcat/logs/catalina.out
+CMD ["/usr/sbin/init"]
