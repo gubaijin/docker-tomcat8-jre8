@@ -10,6 +10,6 @@ RUN cd /opt/ &&\
     cd cronolog-1.6.2 && \
     ./configure && \
     make && make install
-RUN yum install -y rng-tools && \
+RUN yum install -y rng-tools
 RUN touch /opt/tomcat/logs/catalina.out
 CMD systemctl start rngd
