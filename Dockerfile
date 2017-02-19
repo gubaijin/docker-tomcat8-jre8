@@ -13,3 +13,6 @@ RUN cd /opt/ &&\
     ./configure && \
     make && make install
 RUN touch /opt/tomcat/logs/catalina.out
+RUN cd /opt/tomcat/bin/ && \
+	./startup.sh
+CMD tail -f /opt/tomcat/logs/catalina.out
