@@ -1,4 +1,4 @@
-FROM centos:7.2
+FROM centos:7
 ENV LANG en_US.UTF-8
 COPY apache-tomcat-8.5.11.tar.gz /opt/
 COPY cronolog-1.6.2.tar.gz /opt/
